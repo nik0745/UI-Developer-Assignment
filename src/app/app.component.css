@@ -1,0 +1,36 @@
+.navbar-nav>.nav-item a {
+    list-style-type: none;
+    text-decoration: none;
+    padding: 5px;
+    font-weight: bold;
+
+}
+
+.nav-item a.active {
+    color: purple;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation {
+    position: relative;
+    z-index: 1;
+
+}
+
+.img-responsive {
+    position: absolute;
+    height: 580px;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+    width: auto;
+}

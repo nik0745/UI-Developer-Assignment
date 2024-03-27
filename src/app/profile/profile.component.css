@@ -1,0 +1,36 @@
+.userProfile img {
+    height: 200px;
+    width: 200px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: antiquewhite;
+}
+
+.buttons {
+    display: flex;
+    padding: 2px;
+    margin: 5px;
+    height: 60px;
+    width: auto;
+
+}
+
+.pic {
+    height: 30px;
+    width: 125px;
+}
+
+.prf {
+    margin-left: 5px;
+    height: 30px;
+    width: 125px;
+}
+
+p {
+    font-weight: bold;
+    font-size: 15px;
+}

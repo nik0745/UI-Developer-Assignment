@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="userProfile">
+      <img [src]="user?.userimage" alt="User Image">
+      <div class="buttons">
+        <button type="button" class="btn btn-warning pic" (click)="updatePic(user?.id)"> Edit Picture</button>
+        <button type="button" class="btn btn-warning prf" (click)="updateUser(user?.id)"> Edit Profile</button>
+      </div>
+    </div>
+    <div>
+      <p> I am {{user?.firstname}} {{user?.lastname}} and I am {{user?.age}} years old.
+        You can send your emails to {{user?.email}}.
+        I live in the state of {{user?.state}}, {{user?.country}}.
+        I like to play {{user?.tags}}. Please reach out to me on my phone number.
+      </p>
+      <button class="btn btn-success">I Agree</button>
+    </div>
+  </div>

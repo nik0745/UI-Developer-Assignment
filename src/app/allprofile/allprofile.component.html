@@ -1,0 +1,18 @@
+<div class="container" *ngFor="let usr of UsersDetails">
+    <div class="userProfile">
+        <img [src]="usr.userimage" alt="User Image">
+        <div class="buttons">
+            <button type="button" class="btn btn-warning pic" (click)="updatePic(usr.id)"> Edit Picture</button>
+            <button type="button" class="btn btn-warning prf" (click)="updateUser(usr.id)"> Edit Profile</button>
+        </div>
+    </div>
+    <div>
+        <p> I am {{usr.firstname}} {{usr.lastname}} and I am above {{usr.age}}
+            and you can send your emails to {{usr.email}}.
+            I live in the state of {{usr.state}}, {{usr.country}}.
+            I like to play {{usr.tags}}. And please send me a newsletters.
+            Please reachout to me on my phone number.
+        </p>
+        <button class="btn btn-success">I Agree</button>
+    </div>
+</div>

@@ -1,0 +1,222 @@
+<div class="container">
+
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Registration</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form action="" [formGroup]="RegistrationForm" (ngSubmit)="Register()" class="form-label row">
+            <!-- Image column -->
+            <div class="col-md-4">
+              <img [src]="url" class="img-rounded" alt="userimage">
+              <input type="file" class="form-control" (change)="onSelectFile($event)" name="userimage"
+                formControlName="userimage" placeholder="upload your image">
+                <div *ngIf="RegistrationForm.get('userimage')?.errors?.['invalidDimensions']">
+                  Image dimensions exceed the maximum allowed dimensions (310x325).
+                </div>
+
+            </div>
+            <br>
+            <!-- Form fields column -->
+            <div class="col-md-8">
+              <div class="form-label">
+                <input type="text" name="firstname" formControlName="firstname" class="form-control"
+                  placeholder="First Name">
+                <div
+                  *ngIf="RegistrationForm.controls['firstname'].invalid">
+                  <span class="text-danger" *ngIf="RegistrationForm.controls['firstname'].errors?.['required']"> Field
+                    cannot be Blank</span>
+                  <div
+                    *ngIf="RegistrationForm.controls['firstname'].errors?.['onlyAlphabets']">
+                    <span class="text-danger">Only alphabets are allowed.</span>
+                  </div>
+                  <div *ngIf="RegistrationForm.controls['firstname'].errors?.['maxlength']" class="text-danger">
+                    First name should be at most 20 characters long.
+                </div>
+                
+                  <br>
+                </div>
+
+              </div>
+              <br>
+
+              <div class="form-label">
+                <input type="text" formControlName="lastname" class="form-control" placeholder="Last Name">
+                <div
+                *ngIf="RegistrationForm.controls['lastname'].invalid">
+                <span class="text-danger" *ngIf="RegistrationForm.controls['lastname'].errors?.['required']"> Field
+                  cannot be Blank</span>
+                <div
+                  *ngIf="RegistrationForm.controls['lastname'].errors?.['onlyAlphabets']">
+                  <span class="text-danger">Only alphabets are allowed.</span>
+                </div>
+                <div *ngIf="RegistrationForm.controls['lastname'].errors?.['maxlength']" class="text-danger">
+                  Last name should be at most 20 characters long.
+              </div>
+              
+                <br>
+              </div>
+
+              </div>
+
+              <div class="form-label">
+                <input type="email" formControlName="email" class="form-control" placeholder="Email">
+                <div class="text-danger"
+                  *ngIf="RegistrationForm.controls['email'].invalid">
+                  <span *ngIf="RegistrationForm.controls['email'].errors?.['required']"> Field cannot be Blank</span>
+                  <span *ngIf="RegistrationForm.controls['email'].errors?.['pattern']">Invalid email format</span>
+                  <br>
+                </div>
+
+              </div>
+
+              <div class="form-label">
+                <input type="number" formControlName="contacts" class="form-control" placeholder="(541) 754-3010">
+                <div class="text-danger"
+                  *ngIf="RegistrationForm.controls['contacts'].invalid">
+                  <span *ngIf="RegistrationForm.controls['contacts'].errors?.['required']"> Field can not be
+                    Blank</span>
+                    <span *ngIf="RegistrationForm.controls['contacts'].errors?.['pattern']"> Contact can not be more or less than 10 Digits</span>
+
+                </div>
+              </div>
+
+              <!-- Age Input -->
+              <div class="form-label">
+                Age:-<span>{{RegistrationForm.value.age}} years</span>
+                <input type="range" min="0" max="100" step="1" value="20" id="slider" formControlName="age"
+                  placeholder="Age">
+                <div class="col text-danger"
+                  *ngIf="RegistrationForm.controls['age'].invalid && (RegistrationForm.controls['age'].dirty || RegistrationForm.controls['age'].touched)">
+                  <span *ngIf="RegistrationForm.controls['age'].errors?.['required']">Age is required.</span>
+                  <span *ngIf="RegistrationForm.controls['age'].errors?.['min']">Age should be greater than 20.</span>
+                  <span *ngIf="RegistrationForm.controls['age'].errors?.['max']">Age shoulb be less than 60.</span>
+                  <br>
+                </div>
+
+              </div>
+
+              <!-- Country Dropdown -->
+              <div class="form-label">
+                <select id="country" class="form-control" formControlName="country" (change)="onCountryChange()">
+                  <option value="" disabled selected>Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+                </select>
+                <div
+                  *ngIf="RegistrationForm.controls['country'].invalid && RegistrationForm.controls['country'].touched">
+                  <span class="text-danger">Please select a country</span>
+                  <br>
+                </div>
+
+              </div>
+              <!-- State Dropdown -->
+              <div class="form-label">
+                <select id="state" class="form-control" formControlName="state">
+                  <option value="" disabled selected>Select State</option>
+                  <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                </select>
+                <div *ngIf="RegistrationForm.controls['state'].invalid && RegistrationForm.controls['state'].touched">
+                  <span class="text-danger">Please select a state</span>
+                  <br>
+                </div>
+
+              </div>
+
+
+              <!-- Address Type Dropdown -->
+              <div class="form-label">
+                <label for="">Select Address Type</label>
+                <select formControlName="addressType" class="form-control">
+                  <option value="" disabled selected>Select Address Type</option>
+                  <option value="home">Home</option>
+                  <option value="company">Company</option>
+                </select>
+              </div>
+
+              <!-- Home Address Inputs -->
+              <div *ngIf="isHomeSelected" class="form-label">
+                <input type="text" formControlName="homeAddress1" class="form-control" placeholder="Home Address 1">
+                <input type="text" formControlName="homeAddress2" class="form-control" placeholder="Home Address 2">
+              </div>
+
+              <!-- Company Address Inputs -->
+              <div *ngIf="isCompanySelected" class="form-label">
+                <input type="text" formControlName="companyAddress1" class="form-control"
+                  placeholder="Company Address 1">
+                <input type="text" formControlName="companyAddress2" class="form-control"
+                  placeholder="Company Address 2">
+              </div>
+
+
+
+
+              <div class="form-group">
+                <mat-form-field class="example-chip-list">
+                    <mat-label>Favorite Hobby</mat-label>
+                    <mat-chip-grid #chipGrid aria-label="Enter Intrest">
+                        <mat-chip-row *ngFor="let intrest of intrests" (removed)="remove(intrest)"
+                            [editable]="true" (edited)="edit(intrest, $event)"
+                            [aria-description]="'press enter to edit ' + intrest.name">
+                            {{intrest.name}}
+                            <button matChipRemove [attr.aria-label]="'remove ' + intrest.name">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                        <input formControlName="tags" placeholder="New Interest..." [matChipInputFor]="chipGrid"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+                    </mat-chip-grid>
+                </mat-form-field>
+
+              </div>
+              <!-- Newsletter Subscription Checkbox -->
+              <div class="form-label">
+                <input type="checkbox"> Subscribe to newsletters
+              </div>
+              <!-- Form submission buttons -->
+              <div class="form-label">
+                <button type="submit" class="btn btn-info" [disabled]="!RegistrationForm.valid"
+                  >Register</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+<div class="container heading">
+  <h1> I am looking for....</h1>
+  <div>
+    <div>
+      <input type="textarea" id="Myinput" placeholder="Enter a job description... " class="form-control">
+      <input type="checkbox">FullTime
+      <input type="checkbox">Part Time/Casual/Freelance
+      <select name="" id="">
+        <option value="">Search Your Location</option>
+        <option value=""> Lower Parel</option>
+        <option value="">Dadar</option>
+        <option value="">Vashi</option>
+        <option value="">Thane</option>
+      </select>
+      <button type="button" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+
+</div>
+<div class="RegisterButton">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Register
+  </button>
+</div>

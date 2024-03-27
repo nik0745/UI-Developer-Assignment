@@ -1,0 +1,62 @@
+<div class="container">
+  <form [formGroup]="updateForm" (ngSubmit)="onUpdate()" class="mt-4">
+    <div class="row">
+      <div class="col-md-4">
+          <img [src]="url" alt="User Image" class="img-thumbnail mt-2" style="max-width: 200px;" >
+          <div class="form-label text-center">
+            <input type="file" accept="image/*" class="form-control-file" id="userimage" (change)="onSelectFile($event)" >
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-label">
+              <label for="firstname">First Name:</label>
+              <input type="text" class="form-control" id="firstname" formControlName="firstname" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-label">
+              <label for="lastname">Last Name:</label>
+              <input type="text" class="form-control" id="lastname" formControlName="lastname" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-label">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" formControlName="email" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-label">
+              <label for="contacts">Contacts:</label>
+              <input type="text" class="form-control" id="contacts" formControlName="contacts" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-label">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" id="age" formControlName="age" readonly>
+            </div>
+          </div>
+        
+         
+  
+            <div class="col-md-6">
+        <div class="form-label">
+          <label for="tags">Tags:</label>
+          <input type="text" class="form-control" id="tags" formControlName="tags" readonly>
+        </div>
+      </div>
+      
+      </div>
+        <button type="submit" class="btn btn-primary" >Update</button>
+      </div>
+    </div>
+   
+  </form>
+</div>
